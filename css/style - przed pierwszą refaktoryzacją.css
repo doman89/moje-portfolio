@@ -1,0 +1,762 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+html {
+    font-family: 'Saira Extra Condensed', Arial, sans-serif;
+    font-size: 10px;
+}
+
+body>* {
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+header {
+    font-size: 10px;
+    overflow: hidden;
+    position: relative;
+    height: 100vh;
+    background-color: #15A2FF;
+    margin: 0 auto;
+}
+
+header .welcome {
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    top: 10%;
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+header .welcome p {
+    font-size: 4em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding-bottom: 40px;
+}
+
+header .welcome h1 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+header .welcome h2 {
+    font-size: 1.5em;
+    font-weight: normal;
+    /*    letter-spacing: 1px;*/
+}
+
+header img {
+    position: absolute;
+    right: -16%;
+    bottom: 0;
+    height: 60%;
+}
+
+@media (orientation: portrait) and (min-width: 360px) {
+    header {
+        font-size: 12px;
+    }
+}
+
+@media (orientation: portrait) and (min-width: 410px) {
+    header {
+        font-size: 14px;
+    }
+}
+
+@media (orientation:portrait) and (min-width: 768px) {
+    header {
+        font-size: 22px;
+    }
+    header .welcome p {
+        margin-bottom: 60px;
+    }
+    header .welcome h1 {
+        line-height: 200%;
+    }
+    header img {
+        right: 20px;
+        height: 60%;
+    }
+}
+
+@media(orientation:portrait) and (min-width: 1024px) {
+    header {
+        font-size: 28px;
+    }
+    header .welcome {
+        top: 15%;
+    }
+}
+
+@media(orientation: landscape) {
+    header .welcome {
+        top: 20%;
+        left: 10%;
+        text-align: left;
+    }
+    header .welcome h1 {
+        line-height: 150%;
+    }
+    header img {
+        height: 90%;
+        right: -4%;
+    }
+}
+
+@media (orientation: landscape) and (min-width: 640px) {
+    header {
+        font-size: 13px;
+    }
+    header .welcome {
+        left: 8%;
+    }
+}
+
+@media (orientation:landscape) and (min-width: 1024px) {
+    header {
+        font-size: 22px;
+    }
+    header .welcome {
+        left: 10%;
+    }
+    header .welcome h1 {
+        line-height: 200%;
+    }
+    header .welcome p {
+        margin-bottom: 60px;
+    }
+    header img {
+        right: -10%;
+    }
+}
+
+@media (orientation: landscape) and (min-width: 1280px) {
+    header {
+        font-size: 26px;
+    }
+    header .welcome {
+        top: 20%;
+    }
+    header img {
+        height: 90%;
+        /*        right: -20%;*/
+    }
+}
+
+@media (orientation: landscape) and (min-width: 1600px) {
+    header {
+        font-size: 26px;
+    }
+}
+
+/* ----------------------------------------------------------------------------------------------------- */
+
+.aboutme {
+    padding: 5% 10%;
+    font-size: 10px;
+    background-color: #710CE8;
+    color: white;
+}
+
+.aboutme h1 {
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.7em;
+    margin: 20px auto;
+}
+
+.aboutme p {
+    font-size: 1.3em;
+    text-align: justify;
+    line-height: 150%;
+    font-family: 'Saira', sans-serif;
+    margin-bottom: 20px;
+    text-indent: 20px;
+}
+
+@media (orientation: portrait) and (min-width: 360px) {
+    .aboutme {
+        font-size: 11px;
+    }
+}
+
+@media (orientation: portrait) and (min-width: 410px) {
+    .aboutme {
+        font-size: 12px;
+    }
+}
+
+@media (orientation: portrait) and (min-width: 768px) {
+    .aboutme {
+        font-size: 18px;
+    }
+    .aboutme h1 {
+        margin: 40px auto;
+    }
+    .aboutme p {
+        margin-bottom: 40px;
+        text-indent: 40px;
+    }
+}
+
+@media (orientation: landscape) {
+    .aboutme {
+        position: relative;
+    }
+}
+
+@media (orientation: landscape) and (min-width: 1024px) {
+    .aboutme {
+        font-size: 15px;
+    }
+    .aboutme h1 {
+        margin: 60px auto;
+    }
+    .aboutme p {
+        margin-bottom: 40px;
+        text-indent: 40px;
+    }
+}
+
+@media (orientation: landscape) and (min-width: 1280px) {
+    .aboutme {
+        font-size: 17px;
+    }
+}
+
+/* ----------------------------------------------------------------------------------------------------- */
+
+.technology {
+    padding: 0 5%;
+    font-size: 10px;
+}
+
+.technology>p {
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.7em;
+    margin: 20px auto;
+}
+
+.technology .language {
+    overflow: hidden;
+    margin-bottom: 100px;
+}
+
+.technology .language .image {
+    margin: 0 auto;
+    max-width: 381px;
+    height: 280px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.technology .language:nth-of-type(1) .image {
+    background-color: rgb(229, 79, 38);
+    background-image: url("../img/html.png");
+}
+
+.technology .language:nth-of-type(2) .image {
+    background-color: rgb(12, 115, 184);
+    background-image: url("../img/css.png");
+}
+
+.technology .language:nth-of-type(3) .image {
+    background-color: rgb(231, 160, 32);
+    background-image: url("../img/js.png");
+}
+
+.technology .language:nth-of-type(4) .image {
+    background-color: rgb(0, 255, 37);
+    background-image: url("../img/mysql.png");
+}
+
+.technology .language:nth-of-type(5) .image {
+    background-color: rgb( 97, 130, 184);
+    background-image: url("../img/php.png");
+}
+
+.technology .language h1 {
+    font-size: 1.5em;
+    text-align: center;
+    line-height: 200%;
+    margin: 20px 0;
+}
+
+.technology .language p {
+    font-size: 1.3em;
+    text-align: justify;
+    line-height: 150%;
+    font-family: 'Saira', sans-serif;
+}
+
+@media (orientation: portrait) and (min-width: 360px) {
+    .technology {
+        font-size: 11px;
+    }
+    .technology>p {
+        margin: 30px auto;
+    }
+}
+
+@media (orientation: portrait) and (min-width: 410px) {
+    .technology {
+        font-size: 12px;
+    }
+    .technology>p {
+        margin: 40px auto;
+    }
+    .technology .language {
+        margin-bottom: 80px;
+    }
+}
+
+@media (orientation: portrait) and (min-width: 768px) {
+    .technology {
+        font-size: 18px;
+    }
+    .technology>p {
+        margin: 60px auto;
+    }
+    .technology .language {
+        margin-bottom: 120px;
+    }
+    .technology .language p {
+        line-height: 200%;
+    }
+}
+
+@media (orientation: landscape) {
+    .technology .language {
+        float: left;
+        width: calc((100% - (2 * 2%)) / 3);
+        margin-right: 2%;
+        min-height: 500px;
+        height: 50%;
+    }
+    .technology .language .image {
+        height: 150px;
+    }
+    .technology .language:nth-child(3n+1) {
+        margin-right: 0;
+    }
+    .technology .language p {
+        font-size: 1.2em;
+    }
+}
+
+@media (orientation: landscape) and (min-width: 1024px) {
+    .technology {
+        font-size: 15px;
+    }
+    .technology>p {
+        margin: 40px auto;
+    }
+    .technology .language {
+        width: calc((100% - (2 * 3%)) / 3);
+        margin-right: 3%;
+    }
+    .technology .language .image {
+        height: 200px;
+    }
+}
+
+@media (orientation: landscape) and (min-width: 1280px) {
+    .technology {
+        font-size: 17px;
+    }
+    .technology>p {
+        margin: 60px auto;
+    }
+    .technology .language .image {
+        height: 270px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .technology .language .image {
+        background-size: 80%;
+        transition: 1s;
+        cursor: pointer;
+    }
+    .technology .language .image:hover {
+        background-size: 150%;
+    }
+}
+
+/* ----------------------------------------------------------------------------------------------------- */
+
+.projects {
+    font-size: 10px;
+    color: white;
+    background-color: #FF0000;
+    padding: 5%;
+}
+
+.projects>h1 {
+    text-align: center;
+    text-transform: uppercase;
+    margin: 20px 0;
+    font-size: 1.7em;
+}
+
+.project {
+    /* color: white; */
+    background-color: rgb(0, 0, 0);
+    margin-bottom: 20px;
+    padding: 2%;
+}
+
+.projects .project .screen a img {
+    width: 100%;
+    transition: 0.3s linear;
+}
+
+.projects .project .description h2 {
+    margin-top: 5%;
+    text-transform: uppercase;
+    padding-bottom: 5%;
+    border-bottom: 1px solid white;
+    text-align: center;
+    font-size: 1.4em;
+}
+
+.projects .project .description p {
+    text-align: justify;
+    text-indent: 15px;
+    margin: 5% 0;
+    font-size: 1.2em;
+    line-height: 150%;
+}
+
+@media (orientation: portrait) and (min-width: 360px) {
+    .projects {
+        font-size: 11px;
+    }
+}
+
+@media (orientation: portrait) and (min-width: 410px) {
+    .projects {
+        font-size: 12px;
+    }
+}
+
+@media (orientation: portrait) and (min-width: 768px) {
+    .projects {
+        font-size: 18px;
+    }
+}
+
+@media (orientation: landscape) {
+    .projects .project {
+        position: relative;
+    }
+    .projects .project .screen {
+        position: absolute;
+        top: 50%;
+        right: 1%;
+        float: left;
+        width: 50%;
+        transform: translateY(-50%);
+    }
+    .projects .project .screen a img {
+        /* display: block; */
+        /* margin-top: 5%; */
+        /* transform: translateY(30%) rotate(0); */
+    }
+    .projects .project .description {
+        width: 50%;
+        float: left;
+        padding-right: 2%;
+    }
+    .projects .project .description p {
+        text-align: justify;
+    }
+    .projects .project:nth-of-type(2n) .screen {
+        position: absolute;
+        left: 1%;
+        /* top: 50%; */
+        /* right: 0; */
+        float: right;
+        width: 50%;
+        /* transform: translateY(-50%); */
+    }
+    .projects .project:nth-of-type(2n) .description {
+        width: 50%;
+        float: right;
+        padding-right: 0;
+        padding-left: 2%;
+    }
+    /* .projects .project:nth-of-type(2n) .description p {
+        text-align: right;
+    } */
+}
+
+@media (orientation: landscape) and (min-width: 1024px) {
+    .projects {
+        font-size: 15px;
+    }
+}
+
+@media (orientation: landscape) and (min-width: 1280px) {
+    .projects {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .projects .project .screen a img:hover {
+        transform: scale(0.9);
+        filter: brightness(0.7);
+    }
+}
+
+/* ----------------------------------------------------------------------------------------------------- */
+
+.motto {
+    color: white;
+    font-size: 10px;
+    background-image: url("../img/mountains-1868715_1280.jpg");
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.motto h1 {
+    font-size: 2.2em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.motto .bg {
+    padding: 10% 10% 20%;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.motto .bg p {
+    font-size: 1.8em;
+    line-height: 250%;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.motto .bg p:last-child {
+    font-size: 1.6em;
+    color: white;
+    line-height: 250%;
+    font-style: italic;
+    text-align: right;
+}
+
+@media (orientation: portrait) and (min-width: 360px) {
+    .motto {
+        font-size: 11px;
+    }
+    .motto .bg {
+        padding-top: 15%;
+    }
+    .motto h1 {
+        margin-bottom: 25px;
+    }
+}
+
+@media (orientation: portrait) and (min-width: 410px) {
+    .motto {
+        font-size: 12px;
+    }
+}
+
+@media (orientation: portrait) and (min-width: 768px) {
+    .motto {
+        font-size: 18px;
+    }
+    .motto .bg {
+        padding-top: 20%;
+    }
+    .motto h1 {
+        margin-bottom: 60px;
+    }
+}
+
+@media (orientation: landscape) {
+    .motto h1 {
+        margin-bottom: 40px;
+    }
+    .motto .bg {
+        padding-bottom: 10%;
+    }
+}
+
+@media (orientation: landscape) and (min-width: 640px) {
+    .motto h1 {
+        margin-bottom: 60px;
+    }
+    .motto .bg p {
+        padding-left: 8%;
+        padding-right: 8%;
+    }
+}
+
+@media (orientation: landscape) and (min-width: 1024px) {
+    .motto {
+        font-size: 15px;
+    }
+    .motto .bg {
+        padding-top: 15%;
+    }
+    .motto .bg p {
+        padding-left: 15%;
+        padding-right: 15%;
+    }
+}
+
+@media (orientation: landscape) and (min-width: 1280px) {
+    .motto {
+        font-size: 18px;
+    }
+    .motto h1 {
+        margin-bottom: 100px;
+    }
+    .motto .bg {
+        padding-top: 15%;
+    }
+    .motto .bg p {
+        padding-left: 15%;
+        padding-right: 15%;
+    }
+}
+
+/* ----------------------------------------------------------------------------------------------------- */
+
+.contact {
+    font-size: 10px;
+    padding: 5%;
+    background-color: #000000;
+    color: white;
+    overflow: hidden;
+}
+
+.contact>p {
+    text-align: center;
+    font-size: 1.7em;
+    margin: 5% 0 10%;
+    text-transform: uppercase;
+}
+
+.info {
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.info img {
+    float: left;
+    width: 50px;
+    max-width: 120px;
+}
+
+.info p {
+    float: left;
+    display: block;
+    margin-left: 20px;
+    line-height: 50px;
+    text-align: left;
+    font-size: 1.2em;
+}
+
+.info:nth-of-type(3)>p {
+    font-size: 1.1em;
+}
+
+@media (orientation: portrait) and (min-width: 360px) {
+    .contact {
+        font-size: 11.5px;
+    }
+    .info img {
+        width: 60px;
+    }
+    .info p {
+        line-height: 60px;
+    }
+}
+
+@media (orientation: portrait) and (min-width: 410px) {
+    .contact {
+        font-size: 12px;
+    }
+    .info img {
+        width: 60px;
+    }
+    .info p {
+        line-height: 60px;
+    }
+}
+
+@media (orientation: portrait) and (min-width: 768px) {
+    .contact {
+        font-size: 18px;
+    }
+    .info {
+        margin-bottom: 60px;
+    }
+    .info img {
+        width: 120px;
+    }
+    .info p {
+        line-height: 120px;
+        margin-left: 40px;
+    }
+}
+
+@media (orientation: landscape) {
+    .contact {
+        font-size: 10px;
+        padding: 10%;
+    }
+}
+
+@media (orientation: landscape) and (min-width: 1024px) {
+    .contact {
+        font-size: 15px;
+    }
+    .info {
+        margin-bottom: 40px;
+    }
+    .contact>p {
+        margin-top: 0;
+    }
+}
+
+@media (orientation: landscape) and (min-width: 1280px) {
+    .contact {
+        font-size: 18px;
+    }
+}
+
+footer {
+    font-size: 1.0rem;
+    padding: 10px;
+    background-color: #E88B0C;
+    color: white;
+    line-height: 200%;
+    text-align: center;
+}

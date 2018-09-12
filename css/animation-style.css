@@ -1,0 +1,1160 @@
+:root {
+    --timerSlider: 60s;
+    --numberPhotosSlider: 10;
+    --animationTime: 30s;
+    --spriteSpeed: 0.9s;
+    --spriteScale: 2;
+    --carAnimation: 120s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+    color: white;
+    font-family: 'Inconsolata', monospace;
+}
+
+@media (orientation: portrait) and (min-width: 360px) {
+    html {
+        font-size: 12px;
+    }
+}
+
+@media (orientation: portrait) and (min-width: 410px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media (orientation: portrait) and (min-width: 768px) {
+    html {
+        font-size: 22px;
+    }
+}
+
+@media(orientation:portrait) and (min-width: 1024px) {
+    html {
+        font-size: 28px;
+    }
+}
+
+@media (orientation: landscape) {
+    html {
+        font-size: 12px;
+    }
+}
+
+@media (orientation: landscape) and (min-width: 640px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media (orientation: landscape) and (min-width: 1024px) {
+    html {
+        font-size: 24px;
+    }
+}
+
+@media (orientation: landscape) and (min-width: 1600px) {
+    html {
+        font-size: 28px;
+    }
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+aside {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: -40vw;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    z-index: 2;
+    width: 40vw;
+    display: flex;
+    transition: 0.3s linear;
+    padding: 5% 1% 0 2%;
+    text-transform: uppercase;
+    font-size: 1.1em;
+}
+
+aside.active {
+    right: 0;
+}
+
+.hamburger {
+    cursor: pointer;
+    position: fixed;
+    top: 5%;
+    right: 5%;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 1vw 1vw;
+    border-radius: 10%;
+    z-index: 3;
+    text-align: center;
+    font-size: 1.5em;
+    color: white;
+    transition: 0.3s linear;
+}
+
+.hamburger.active {
+    right: 45%;
+}
+
+.fas {
+    display: none;
+}
+
+.fas.active {
+    display: inline;
+}
+
+nav {
+    display: flex;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    list-style: none;
+    color: white;
+    text-decoration: none;
+}
+
+nav ul li a {
+    overflow: hidden;
+    display: block;
+    position: relative;
+    cursor: pointer;
+    text-decoration: none;
+    letter-spacing: 1px;
+    color: white;
+}
+
+nav ul li a::after {
+    position: absolute;
+    display: block;
+    content: "";
+    background-color: transparent;
+    width: 100%;
+    height: 95%;
+    border-bottom: 2px solid white;
+    top: 0;
+    left: -100%;
+    transition: 0.3s linear;
+}
+
+@media (orientation: landscape) {
+    aside {
+        padding: 2% 5%;
+        flex-direction: row-reverse;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        top: -50vh;
+        bottom: unset;
+        left: 0;
+        font-size: 0.9em;
+    }
+
+    aside.active {
+        top: 0;
+    }
+
+    .hamburger {
+        transition: none;
+    }
+
+    .hamburger.active {
+        position: static;
+    }
+
+    nav {
+        flex-grow: 1;
+        justify-content: space-between;
+    }
+
+    nav ul {
+        flex-grow: 1;
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 1024px) {
+    nav ul li a:hover {
+        color: lightgrey;
+    }
+
+    nav ul li a:hover::after {
+        left: 0;
+    }
+}
+
+/* -------------------------------------------------------------------------------------------------------------------------------- */
+header {
+    overflow: hidden;
+    position: relative;
+    flex-basis: 100vh;
+    background-image: url("../img/office.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.headerTitle>*,
+.headerAbout>* {
+    position: absolute;
+}
+
+.headerTitle span {
+    padding: 0 5%;
+    text-transform: uppercase;
+    text-align: center;
+    top: 25%;
+    left: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    transform: translateX(-50%) scale(1);
+    font-size: 4em;
+    opacity: 1;
+    animation: animHeaderTitle 12s linear infinite;
+}
+
+.headerTitle span:nth-child(2) {
+    opacity: 0;
+    animation-delay: 6s;
+}
+
+.headerAbout span {
+    padding: 0 2%;
+    display: block;
+    background-color: rgba(0, 0, 0, 0.7);
+    left: 3%;
+    bottom: 10%;
+    font-size: 1.3em;
+    line-height: 2em;
+    animation: animHeaderAbout 6s linear infinite;
+    opacity: 1;
+}
+
+.headerAbout span:nth-child(2) {
+    opacity: 0;
+    animation-delay: 3s;
+}
+
+@media (orientation: landscape) {
+    .headerTitle span {
+        top: 10%;
+        left: 50%;
+    }
+
+    .headerAbout span {
+        left: 15%;
+        bottom: 10%;
+    }
+}
+
+@keyframes animHeaderTitle {
+    0% {
+        opacity: 1;
+        transform: translate(-50%) scale(0);
+    }
+
+    5% {
+        transform: translateX(-50%) scale(1);
+    }
+
+    10% {
+        transform: translateX(-85%) scale(1);
+    }
+
+    20% {
+        transform: translateX(-15%) scale(1);
+    }
+
+    25% {
+        transform: translate(-50%) scale(1);
+    }
+
+    30% {
+        transform: translate(-50%) scale(2);
+    }
+
+    45% {
+        transform: translate(-50%) scale(0);
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+        /* Front-End Developer */
+    }
+
+    95% {
+        opacity: 0;
+        transform: translate(-50%) scale(0);
+    }
+
+    100% {
+        transform: translate(-50%) scale(0);
+        opacity: 1;
+    }
+}
+
+@keyframes animHeaderAbout {
+    0% {
+        opacity: 0;
+    }
+
+    38% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    88% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* ------------------------------------------------------------------------- */
+.slider {
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    background-color: black;
+    padding: 2%;
+}
+
+.slider>h1 {
+    font-size: 3em;
+    text-align: center;
+    margin: 10% 0;
+}
+
+.sliderContainer {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    min-height: 80vh;
+}
+
+.sliderContainer img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    animation: aniSliderImg 60s ease infinite both;
+    /* opacity: 0; */
+}
+
+.sliderContainer img:nth-of-type(2) {
+    animation-delay: calc(var(--timerSlider) * (1 / var(--numberPhotosSlider)) * 1);
+}
+
+.sliderContainer img:nth-of-type(3) {
+    animation-delay: calc(var(--timerSlider) * (1 / var(--numberPhotosSlider)) * 2);
+}
+
+.sliderContainer img:nth-of-type(4) {
+    animation-delay: calc(var(--timerSlider) * (1 / var(--numberPhotosSlider)) * 3);
+}
+
+.sliderContainer img:nth-of-type(5) {
+    animation-delay: calc(var(--timerSlider) * (1 / var(--numberPhotosSlider)) * 4);
+}
+
+.sliderContainer img:nth-of-type(6) {
+    animation-delay: calc(var(--timerSlider) * (1 / var(--numberPhotosSlider)) * 5);
+}
+
+.sliderContainer img:nth-of-type(7) {
+    animation-delay: calc(var(--timerSlider) * (1 / var(--numberPhotosSlider)) * 6);
+}
+
+.sliderContainer img:nth-of-type(8) {
+    animation-delay: calc(var(--timerSlider) * (1 / var(--numberPhotosSlider)) * 7);
+}
+
+.sliderContainer img:nth-of-type(9) {
+    animation-delay: calc(var(--timerSlider) * (1 / var(--numberPhotosSlider)) * 8);
+}
+
+.sliderContainer img:nth-of-type(10) {
+    animation-delay: calc(var(--timerSlider) * (1 / var(--numberPhotosSlider)) * 9);
+}
+
+.sliderContainer p:nth-of-type(2) {
+    animation-delay: calc(var(--timerSlider) * (1 / var(--numberPhotosSlider)) * 1);
+}
+
+.sliderContainer p:nth-of-type(3) {
+    animation-delay: calc(var(--timerSlider) * (1 / var(--numberPhotosSlider)) * 2);
+}
+
+.sliderContainer p:nth-of-type(4) {
+    animation-delay: calc(var(--timerSlider) * (1 / var(--numberPhotosSlider)) * 3);
+}
+
+.sliderContainer p:nth-of-type(5) {
+    animation-delay: calc(var(--timerSlider) * (1 / var(--numberPhotosSlider)) * 4);
+}
+
+.sliderContainer p:nth-of-type(6) {
+    animation-delay: calc(var(--timerSlider) * (1 / var(--numberPhotosSlider)) * 5);
+}
+
+.sliderContainer p:nth-of-type(7) {
+    animation-delay: calc(var(--timerSlider) * (1 / var(--numberPhotosSlider)) * 6);
+}
+
+.sliderContainer p:nth-of-type(8) {
+    animation-delay: calc(var(--timerSlider) * (1 / var(--numberPhotosSlider)) * 7);
+}
+
+.sliderContainer p:nth-of-type(9) {
+    animation-delay: calc(var(--timerSlider) * (1 / var(--numberPhotosSlider)) * 8);
+}
+
+.sliderContainer p:nth-of-type(10) {
+    animation-delay: calc(var(--timerSlider) * (1 / var(--numberPhotosSlider)) * 9);
+}
+
+.sliderContainer>p {
+    position: absolute;
+    font-size: 1.7em;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 1% 2%;
+    animation: aniSliderDescription 60s linear infinite both;
+    top: 10%;
+    left: 2%;
+}
+
+.sliderContainer>p:nth-of-type(2) {
+    top: 40%;
+    left: 60%;
+    animation-delay: calc(var(--timerSlider) * (1 / var(--numberPhotosSlider)) * 1);
+}
+
+.sliderContainer>p:nth-of-type(3) {
+    top: 80%;
+    left: 59%;
+    animation-delay: calc(var(--timerSlider) * (1 / var(--numberPhotosSlider)) * 2);
+}
+
+.sliderContainer>p:nth-of-type(4) {
+    top: 10%;
+    left: 62%;
+    animation-delay: calc(var(--timerSlider) * (1 / var(--numberPhotosSlider)) * 3);
+}
+
+.sliderContainer>p:nth-of-type(5) {
+    top: 80%;
+    left: 60%;
+    animation-delay: calc(var(--timerSlider) * (1 / var(--numberPhotosSlider)) * 4);
+}
+
+.sliderContainer>p:nth-of-type(6) {
+    top: 90%;
+    left: 5%;
+    animation-delay: calc(var(--timerSlider) * (1 / var(--numberPhotosSlider)) * 5);
+}
+
+.sliderContainer>p:nth-of-type(7) {
+    top: 50%;
+    left: 9%;
+    animation-delay: calc(var(--timerSlider) * (1 / var(--numberPhotosSlider)) * 6);
+}
+
+.sliderContainer>p:nth-of-type(8) {
+    top: 75%;
+    left: 25%;
+    animation-delay: calc(var(--timerSlider) * (1 / var(--numberPhotosSlider)) * 7);
+}
+
+.sliderContainer>p:nth-of-type(9) {
+    top: 15%;
+    left: 30%;
+    animation-delay: calc(var(--timerSlider) * (1 / var(--numberPhotosSlider)) * 8);
+}
+
+.sliderContainer>p:nth-of-type(10) {
+    top: 50%;
+    left: 50%;
+    animation-delay: calc(var(--timerSlider) * (1 / var(--numberPhotosSlider)) * 9);
+}
+
+@keyframes aniSliderImg {
+    0% {
+        opacity: 0;
+    }
+
+    2% {
+        opacity: 1;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    12% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes aniSliderDescription {
+    0% {
+        opacity: 0;
+    }
+
+    3% {
+        opacity: 0;
+    }
+
+    5% {
+        opacity: 1;
+    }
+
+    7% {
+        opacity: 1;
+    }
+
+    9% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* -------------------------------------------------------------------------------------------------------------------------------- */
+.sprites {
+    overflow: hidden;
+    position: relative;
+    flex-basis: 100vh;
+    background: url("../img/seamless_beach_sand_texture_by_hhh316-d4hr45u.jpg");
+}
+
+.sprites h1 {
+    width: 50%;
+    box-sizing: content-box;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 2.5em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2% 4%;
+    background-color: rgba(0, 0, 0, 0.3);
+    animation: animSpriteHeaderX 4.25s steps(1) infinite, animSpriteHeaderY 3.33s steps(1) infinite;
+}
+
+.sprites div img {
+    position: absolute;
+    opacity: 0;
+}
+
+.sprites div {
+    position: absolute;
+    overflow: hidden;
+    width: 32px;
+    height: 48px;
+    transform: scale(var(--spriteScale));
+}
+
+.sprites .sprite1 {
+    width: 27px;
+    height: 26px;
+    animation: animSpriteMoveR2D2 var(--animationTime) linear infinite reverse both;
+}
+
+.sprite1>img:nth-child(1) {
+    animation: animSpriteForward var(--spriteSpeed) steps(4) infinite, animSpriteRotate var(--animationTime) calc(var(--animationTime) / 4 * 1) linear infinite;
+}
+
+.sprite1>img:nth-child(2) {
+    animation: animSpriteRight var(--spriteSpeed) steps(4) infinite, animSpriteRotate var(--animationTime) calc(var(--animationTime) / 4 * 0) linear infinite;
+}
+
+.sprite1>img:nth-child(3) {
+    animation: animSpriteBackward var(--spriteSpeed) steps(4) infinite, animSpriteRotate var(--animationTime) calc(var(--animationTime) / 4 * 3) linear infinite;
+}
+
+.sprite1>img:nth-child(4) {
+    animation: animSpriteLeft var(--spriteSpeed) steps(4) infinite, animSpriteRotate var(--animationTime) calc(var(--animationTime) / 4 * 2) linear infinite;
+}
+
+.sprites .sprite2 {
+    width: 40px;
+    height: 72px;
+    animation: animSpriteMoveChewbacca var(--animationTime) linear infinite both;
+}
+
+.sprite2>img:nth-child(1) {
+    animation: animSpriteForward var(--spriteSpeed) steps(4) infinite, animSpriteRotate var(--animationTime) calc(var(--animationTime) / 4 * 0) linear infinite;
+}
+
+.sprite2>img:nth-child(2) {
+    animation: animSpriteRight var(--spriteSpeed) steps(4) infinite, animSpriteRotate var(--animationTime) calc(var(--animationTime) / 4 * 1) linear infinite;
+}
+
+.sprite2>img:nth-child(3) {
+    animation: animSpriteBackward var(--spriteSpeed) steps(4) infinite, animSpriteRotate var(--animationTime) calc(var(--animationTime) / 4 * 2) linear infinite;
+}
+
+.sprite2>img:nth-child(4) {
+    animation: animSpriteLeft var(--spriteSpeed) steps(4) infinite, animSpriteRotate var(--animationTime) calc(var(--animationTime) / 4 * 3) linear infinite;
+}
+
+.sprite3 {
+    animation: animSpriteMove var(--animationTime) calc(var(--animationTime)/2) linear infinite both;
+}
+
+.sprite3>img:nth-child(1) {
+    animation: animSpriteForward var(--spriteSpeed) calc(var(--animationTime)/2) steps(4) infinite, animSpriteRotate var(--animationTime) calc(var(--animationTime) / 4 * 0 + calc(var(--animationTime)/2)) linear infinite;
+}
+
+.sprite3>img:nth-child(2) {
+    animation: animSpriteRight var(--spriteSpeed) calc(var(--animationTime)/2) steps(4) infinite, animSpriteRotate var(--animationTime) calc(var(--animationTime) / 4 * 1 + calc(var(--animationTime)/2)) linear infinite;
+}
+
+.sprite3>img:nth-child(3) {
+    animation: animSpriteBackward var(--spriteSpeed) calc(var(--animationTime)/2) steps(4) infinite, animSpriteRotate var(--animationTime) calc(var(--animationTime) / 4 * 2 + calc(var(--animationTime)/2)) linear infinite;
+}
+
+.sprite3>img:nth-child(4) {
+    animation: animSpriteLeft var(--spriteSpeed) calc(var(--animationTime)/2) steps(4) infinite, animSpriteRotate var(--animationTime) calc(var(--animationTime) / 4 * 3 + calc(var(--animationTime)/2)) linear infinite;
+}
+
+.sprite4 {
+    animation: animSpriteMove var(--animationTime) calc(var(--animationTime)/2) linear infinite reverse both;
+}
+
+.sprite4>img:nth-child(1) {
+    animation: animSpriteForward var(--spriteSpeed) calc(var(--animationTime)/2) steps(4) infinite, animSpriteRotate var(--animationTime) calc(var(--animationTime) / 4 * 1 + calc(var(--animationTime)/2)) linear infinite;
+}
+
+.sprite4>img:nth-child(2) {
+    animation: animSpriteRight var(--spriteSpeed) calc(var(--animationTime)/2) steps(4) infinite, animSpriteRotate var(--animationTime) calc(var(--animationTime) / 4 * 0 + calc(var(--animationTime)/2)) linear infinite;
+}
+
+.sprite4>img:nth-child(3) {
+    animation: animSpriteBackward var(--spriteSpeed) calc(var(--animationTime)/2) steps(4) infinite, animSpriteRotate var(--animationTime) calc(var(--animationTime) / 4 * 3 + calc(var(--animationTime)/2)) linear infinite;
+}
+
+.sprite4>img:nth-child(4) {
+    animation: animSpriteLeft var(--spriteSpeed) calc(var(--animationTime)/2) steps(4) infinite, animSpriteRotate var(--animationTime) calc(var(--animationTime) / 4 * 2 + calc(var(--animationTime)/2)) linear infinite;
+}
+
+.sprite5 {
+    animation: animSpriteMove2 var(--animationTime) linear infinite both;
+}
+
+.sprite5>img:nth-child(1) {
+    animation: animSpriteForward var(--spriteSpeed) steps(4) infinite, animSpriteRotate var(--animationTime) calc(var(--animationTime) / 4 * 1) linear infinite;
+}
+
+.sprite5>img:nth-child(2) {
+    animation: animSpriteRight var(--spriteSpeed) steps(4) infinite, animSpriteRotate var(--animationTime) calc(var(--animationTime) / 4 * 2) linear infinite;
+}
+
+.sprite5>img:nth-child(3) {
+    animation: animSpriteBackward var(--spriteSpeed) steps(4) infinite, animSpriteRotate var(--animationTime) calc(var(--animationTime) / 4 * 3) linear infinite;
+}
+
+.sprite5>img:nth-child(4) {
+    animation: animSpriteLeft var(--spriteSpeed) steps(4) infinite, animSpriteRotate var(--animationTime) calc(var(--animationTime) / 4 * 0) linear infinite;
+}
+
+.sprite6 {
+    animation: animSpriteMove2 var(--animationTime) calc(var(--animationTime)/2) linear infinite both;
+}
+
+.sprite6>img:nth-child(1) {
+    animation: animSpriteForward var(--spriteSpeed) steps(4) infinite, animSpriteRotate var(--animationTime) calc(var(--animationTime) / 4 * 1 + calc(var(--animationTime)/2)) linear infinite;
+}
+
+.sprite6>img:nth-child(2) {
+    animation: animSpriteRight var(--spriteSpeed) steps(4) infinite, animSpriteRotate var(--animationTime) calc(var(--animationTime) / 4 * 2 + calc(var(--animationTime)/2)) linear infinite;
+}
+
+.sprite6>img:nth-child(3) {
+    animation: animSpriteBackward var(--spriteSpeed) steps(4) infinite, animSpriteRotate var(--animationTime) calc(var(--animationTime) / 4 * 3 + calc(var(--animationTime)/2)) linear infinite;
+}
+
+.sprite6>img:nth-child(4) {
+    animation: animSpriteLeft var(--spriteSpeed) steps(4) infinite, animSpriteRotate var(--animationTime) calc(var(--animationTime) / 4 * 0 + calc(var(--animationTime)/2)) linear infinite;
+}
+
+@keyframes animSpriteHeaderX {
+    0% {
+        left: 50%;
+    }
+
+    25% {
+        left: 30%;
+    }
+
+    50% {
+        left: 50%;
+    }
+
+    75% {
+        left: 70%;
+    }
+
+    100% {
+        left: 50%;
+    }
+}
+
+@keyframes animSpriteHeaderY {
+    0% {
+        top: 50%;
+    }
+
+    25% {
+        top: 30%;
+    }
+
+    50% {
+        top: 50%;
+    }
+
+    75% {
+        top: 70%;
+    }
+
+    100% {
+        top: 50%;
+    }
+}
+
+@keyframes animSpriteMove {
+    0% {
+        left: 2%;
+        top: calc(var(--spriteScale) * 2%);
+    }
+
+    25% {
+        left: calc(var(--spriteScale) * 2%);
+        top: calc(100% - (48px * var(--spriteScale)));
+    }
+
+    50% {
+        left: calc(100% - (32px * var(--spriteScale)));
+        top: calc(100% - (48px * var(--spriteScale)));
+    }
+
+    75% {
+        left: calc(100% - (32px * var(--spriteScale)));
+        top: calc(var(--spriteScale) * 2%);
+    }
+
+    100% {
+        left: calc(var(--spriteScale) * 2%);
+        top: calc(var(--spriteScale) * 2%);
+    }
+}
+
+@keyframes animSpriteMove2 {
+    0% {
+        left: calc(50% - (16px * var(--spriteScale)));
+        top: calc(var(--spriteScale) * 2%);
+    }
+
+    25% {
+        left: calc(var(--spriteScale) * 2%);
+        top: calc(50% - (24px * var(--spriteScale)));
+    }
+
+    50% {
+        left: calc(50% - (16px * var(--spriteScale)));
+        top: calc(100% - (48px * var(--spriteScale)));
+    }
+
+    75% {
+        left: calc(100% - (32px * var(--spriteScale)));
+        top: calc(50% - (24px * var(--spriteScale)));
+    }
+
+    100% {
+        left: calc(50% - (16px * var(--spriteScale)));
+        top: calc(var(--spriteScale) * 2%);
+    }
+}
+
+@keyframes animSpriteMoveR2D2 {
+    0% {
+        left: calc(var(--spriteScale) * 2%);
+        top: calc(var(--spriteScale) * 2%);
+    }
+
+    25% {
+        left: calc(var(--spriteScale) * 2%);
+        top: calc(100% - (26px * var(--spriteScale)));
+    }
+
+    50% {
+        left: calc(100% - (27px * var(--spriteScale)));
+        top: calc(100% - (26px * var(--spriteScale)));
+    }
+
+    75% {
+        left: calc(100% - (27px * var(--spriteScale)));
+        top: calc(var(--spriteScale) * 2%);
+    }
+
+    100% {
+        left: calc(var(--spriteScale) * 2%);
+        top: calc(var(--spriteScale) * 2%);
+    }
+}
+
+@keyframes animSpriteMoveChewbacca {
+    0% {
+        left: calc(var(--spriteScale) * 2%);
+        top: calc(var(--spriteScale) * 2%);
+    }
+
+    25% {
+        left: calc(var(--spriteScale) * 2%);
+        top: calc(100% - (72px) * var(--spriteScale));
+    }
+
+    50% {
+        left: calc(100% - (40px * var(--spriteScale)));
+        top: calc(100% - (72px * var(--spriteScale)));
+    }
+
+    75% {
+        left: calc(100% - (40px * var(--spriteScale)));
+        top: calc(var(--spriteScale) * 2%);
+    }
+
+    100% {
+        left: calc(var(--spriteScale) * 2%);
+        top: calc(var(--spriteScale) * 2%);
+    }
+}
+
+@keyframes animSpriteRotate {
+    0% {
+        opacity: 1;
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    25.001% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes animSpriteForward {
+    0% {
+        left: 0;
+        top: 0;
+    }
+
+    100% {
+        left: -400%;
+        top: 0;
+    }
+}
+
+@keyframes animSpriteBackward {
+    0% {
+        left: 0;
+        top: -300%;
+    }
+
+    100% {
+        left: -400%;
+        top: -300%;
+    }
+}
+
+@keyframes animSpriteLeft {
+    0% {
+        left: 0;
+        top: -100%;
+    }
+
+    100% {
+        left: -400%;
+        top: -100%;
+    }
+}
+
+@keyframes animSpriteRight {
+    0% {
+        left: 0;
+        top: -200%;
+    }
+
+    100% {
+        left: -400%;
+        top: -200%;
+    }
+}
+
+.buildingAnimation {
+    background-image: url("../img/panorama.jpg");
+    background-size: cover;
+    background-position: 0% center;
+    /* background-repeat: no-repeat; */
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    animation: animBuildingAnimationBackground calc(var(--carAnimation) / 2) linear infinite alternate both;
+}
+
+.buildingAnimation button {
+    width: 50px;
+    height: 50px;
+}
+
+.buildingAnimation button:hover+.car {
+    left: 100%;
+}
+
+.car {
+    z-index: 1;
+    top: calc(80% - 7.5vh);
+    left: 0vh;
+    background-color: red;
+    position: absolute;
+    width: 30vh;
+    height: 15vh;
+    border-radius: 7vh 15vh 5vh 3vh;
+    transform: rotateY(0);
+    /* transition: 5s linear; */
+    animation: animBuildingAnimationCar var(--carAnimation) linear infinite both;
+}
+
+.wheel {
+    position: absolute;
+    width: 7vh;
+    height: 7vh;
+    border-radius: 50%;
+    border: 1px white solid;
+    background-color: black;
+    bottom: calc(0% - 3.5vh);
+    left: 10%;
+}
+
+.wheel:after {
+    content: "";
+    background-color: white;
+    width: 2vh;
+    height: 2vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+.wheel:nth-of-type(2) {
+    /* top: 50%; */
+    left: calc(80% - 3.5vh);
+    /* transform: translateX(50%); */
+}
+
+.street {
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 20vh;
+    top: 75%;
+    background-color: black;
+    animation: animBuldingAnimationStreet var(--carAnimation) linear infinite both;
+}
+
+.street::after {
+    position: absolute;
+    content: "";
+    width: 200%;
+    height: 50%;
+    top: 0;
+    left: 0;
+    border-bottom: 4px white dashed;
+}
+
+.house {
+    position: absolute;
+    top: calc(85% - 40vh);
+    right: -30vh;
+    width: 30vh;
+    height: 30vh;
+    background-color: gainsboro;
+    z-index: 1;
+    animation: animBuildingAnimationHouse var(--carAnimation) linear infinite both;
+}
+
+.house:nth-of-type(2) {
+    animation-delay: calc(var(--animationTime) / 4 * 1);
+}
+
+.house:nth-of-type(3) {
+    animation-delay: calc(var(--animationTime) / 4 * 2);
+}
+
+.house:nth-of-type(4) {
+    animation-delay: calc(var(--animationTime) / 4 * 3);
+}
+
+.house:after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    border-bottom: 20vh red solid;
+    border-left: 15vh transparent solid;
+    border-right: 15vh transparent solid;
+}
+
+.house .door {
+    position: absolute;
+    width: 5vh;
+    height: 10vh;
+    bottom: 0;
+    left: calc(50% - 2.5vh);
+    background-color: brown;
+}
+
+.house .window {
+    position: absolute;
+    width: 5vh;
+    height: 5vh;
+    background-color: lightblue;
+    top: 20%;
+    left: calc(25% - 2.5vh);
+}
+
+.house .window:nth-of-type(2) {
+    left: calc(75% - 2.5vh);
+}
+
+@keyframes animBuildingAnimationHouse {
+    0% {
+        right: -60vh;
+    }
+
+    12.5% {
+        right: calc(100% + 60vh);
+    }
+
+    50% {
+        right: calc(100% + 60vh);
+    }
+
+    62.5% {
+        right: -60vh;
+    }
+
+    100% {
+        right: -60vh;
+    }
+}
+
+.chimney {
+    width: 7vh;
+    height: 7vh;
+    position: absolute;
+    bottom: 110%;
+    right: 10%;
+    background-color: brown;
+    z-index: -1;
+}
+
+@keyframes animBuldingAnimationStreet {
+    0% {
+        left: 0%;
+    }
+
+    50% {
+        left: -500%;
+    }
+
+    100% {
+        left: 0;
+    }
+}
+
+@keyframes animBuildingAnimationCar {
+    0% {
+        left: 0;
+        transform: rotateY(0);
+    }
+
+    49.999% {
+        transform: rotateY(0);
+    }
+
+    50% {
+        left: calc(100% - 30vh);
+        transform: rotateY(180deg);
+    }
+
+    99.999% {
+        transform: rotateY(180deg);
+    }
+
+    100% {
+        left: 0;
+        transform: rotateY(0);
+    }
+}
+
+@keyframes animBuildingAnimationBackground {
+    0% {
+        background-position-x: 0%;
+    }
+
+    100% {
+        background-position-x: 100%;
+    }
+}
+
+footer {
+    padding: 2% 5%;
+    text-align: center;
+    background-color: black;
+    font-size: 1em;
+    color: white;
+    /* height: 100vh; */
+}
