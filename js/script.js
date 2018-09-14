@@ -9,6 +9,9 @@ const popupWindow = document.querySelector(".modal");
 const speedScrollWebPage = 30;
 const progressBar = document.querySelector(".progressBar");
 const header = document.querySelector("header");
+const headerImage = document.querySelector("header img");
+const upArrow = document.querySelector(".upArrow");
+const downArrow = document.querySelector(".downArrow");
 let timerScrollWebPage;
 
 //tablica położenia sekcji na stronie
@@ -81,7 +84,7 @@ function scrollWebPage(positionY) {
 portfolioButton.addEventListener("click", () => {
     timerScrollWebPage = setTimeout(`scrollWebPage(${documentElementsPosition[enumPosition.PROJECTS]})`, 1);
 });
-modalCloseButton.addEventListener("click", closePopupWindow);
+// modalCloseButton.addEventListener("click", closePopupWindow);
 menuIcon.addEventListener("click", toggleMenuHamburger);
 for (let i = 0; i < link.length; i++) {
     link[i].addEventListener("click", () => {
@@ -95,7 +98,8 @@ window.addEventListener("scroll", function () {
     const currentPercent = Math.round(window.pageYOffset / (document.documentElement.offsetHeight - window.innerHeight) * 100);
     progressBar.style.width = currentPercent + "%";
     if (window.scrollY < documentElementsPosition[enumPosition.ABOUTME]) {
-        header.style.filter = `grayscale(${1.5 * window.scrollY / documentElementsPosition[enumPosition.ABOUTME]})`;
+        header.style.backgroundColor = `rgba(21, 162, 255, ${1-(1.5 * window.scrollY / documentElementsPosition[enumPosition.ABOUTME])})`;
+        headerImage.style.opacity = 1 - (1.5 * window.scrollY / documentElementsPosition[enumPosition.ABOUTME]);
     }
     if ((window.scrollY < documentElementsPosition[enumPosition.TECHNOLOGY])) {
         if (((window.scrollY - documentElementsPosition[enumPosition.ABOUTME]) / (documentElementsPosition[enumPosition.TECHNOLOGY] - documentElementsPosition[enumPosition.ABOUTME])) > -0.15) {
@@ -105,8 +109,8 @@ window.addEventListener("scroll", function () {
 })
 
 //obsługa klawiszy w lewo i prawo
-window.addEventListener("keydown", (e) => {
-    if ((e.keyCode == 38) && (timerScrollWebPage == null)) {
+const scrollSection = (e) => {
+    if (((e.keyCode == 38) || (e == 38)) && (timerScrollWebPage == null)) {
         for (let iteration = 0; iteration < documentElementsPosition.length; iteration++) {
             if ((iteration == (documentElementsPosition.length - 1)) && (documentElementsPosition[iteration] <= window.pageYOffset) && (documentElementsPosition[iteration] <= document.documentElement.offsetHeight)) {
                 timerScrollWebPage = setTimeout(`scrollWebPage(${documentElementsPosition[iteration]})`, 1);
@@ -116,7 +120,7 @@ window.addEventListener("keydown", (e) => {
                 break;
             }
         }
-    } else if ((e.keyCode == 40) && (timerScrollWebPage == null)) {
+    } else if (((e.keyCode == 40) || (e == 40)) && (timerScrollWebPage == null)) {
         for (let iteration = 0; iteration < documentElementsPosition.length; iteration++) {
             if ((documentElementsPosition[iteration] <= window.pageYOffset) && (documentElementsPosition[iteration + 1] > window.pageYOffset)) {
                 timerScrollWebPage = setTimeout(`scrollWebPage(${documentElementsPosition[iteration + 1]})`, 1);
@@ -127,4 +131,12 @@ window.addEventListener("keydown", (e) => {
         }
 
     }
-})
+}
+window.addEventListener("keydown", scrollSection);
+
+upArrow.addEventListener("click", () => {
+    scrollSection(38);
+});
+downArrow.addEventListener("click", () => {
+    scrollSection(40);
+});

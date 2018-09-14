@@ -17,6 +17,7 @@ html {
 
 body {
     display: flex;
+    flex-direction: column;
 }
 
 @media (orientation: portrait) and (min-width: 360px) {
@@ -65,17 +66,6 @@ body {
     html {
         font-size: 28px;
     }
-}
-
-.wrapper {
-    filter: blur(4px);
-    display: flex;
-    flex-direction: column;
-    /* position: relative; */
-}
-
-.wrapper.active {
-    filter: none;
 }
 
 aside {
@@ -198,7 +188,7 @@ nav ul li a::after {
     }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1025px) {
     nav ul li a:hover {
         color: lightgrey;
     }
@@ -208,19 +198,68 @@ nav ul li a::after {
     }
 }
 
+.arrowNavigation {
+    position: fixed;
+    bottom: 2%;
+    right: 2%;
+    z-index: 2;
+    width: 18vh;
+}
+
+.upArrow,
+.downArrow {
+    cursor: pointer;
+    line-height: 8vh;
+    text-align: center;
+    color: white;
+    display: inline-block;
+    background-color: rgba(0, 0, 0, .5);
+    width: 8vh;
+    height: 8vh;
+    border-radius: 25%;
+    transform: rotate(0) scale(1);
+}
+
+.upArrow {
+    transform: rotate(180deg) scale(1);
+}
+
+@media (min-width: 1025px) {
+
+    .upArrow:hover,
+    .downArrow:hover {
+        color: black;
+        background-color: white;
+    }
+
+    .upArrow:hover {
+        transform: rotate(180deg) scale(1.3);
+    }
+
+    .downArrow:hover {
+        transform: rotate(0) scale(1.3);
+    }
+}
+
 header {
-    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
     width: 100%;
+    min-height: 100vh;
     overflow: hidden;
-    position: relative;
-    background-color: #15A2FF;
+    background-color: rgba(21, 162, 255, 1);
+    justify-content: center;
+    align-items: center;
 }
 
 header .welcome {
-    position: absolute;
-    left: 5%;
-    right: 5%;
-    top: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 40vh;
     color: white;
     text-transform: uppercase;
     text-align: center;
@@ -246,11 +285,10 @@ header .welcome h2 {
 }
 
 header img {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-40%);
-    bottom: 0;
-    height: 60%;
+    transform: translateX(10%);
+    display: block;
+    width: 60vh;
+    flex-basis: 60vh;
 }
 
 .button {
@@ -259,9 +297,10 @@ header img {
     border: 2px solid white;
     margin: 0 auto;
     width: 60%;
-    height: 2.2em;
+    line-height: 2.0em;
+    flex-basis: 2.0em;
     border-radius: 5px;
-    font-size: 1.1em;
+    font-size: 1.0em;
     font-family: 'Saira', sans-serif;
     color: white;
     transition: 0.6s linear;
@@ -269,16 +308,15 @@ header img {
 }
 
 .button span {
+    cursor: pointer;
+    top: 0;
+    left: 0;
     color: white;
     display: block;
     position: absolute;
     text-align: center;
     width: 100%;
-    left: 0;
-    top: 0;
-    line-height: 200%;
     animation: buttonContent 6s linear infinite;
-    z-index: 1;
 }
 
 .button span:nth-child(2) {
@@ -308,33 +346,18 @@ header img {
     }
 }
 
-@media (orientation:portrait) and (min-width: 768px) {
-    header .welcome p {
-        margin-bottom: 40px;
-    }
-
-    header .welcome h1 {
-        line-height: 100%;
-    }
-}
-
-@media(orientation:portrait) and (min-width: 1024px) {
-    header {
-        font-size: 28px;
-    }
-
-    header .welcome {
-        top: 15%;
-    }
-}
-
 @media(orientation: landscape) {
+    header {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-end;
+        height: 100vh;
+    }
+
     header .welcome {
-        top: 50%;
-        left: 10%;
-        right: 40%;
-        transform: translateY(-50%);
-        text-align: left;
+        flex-basis: 50%;
+        align-self: center;
+        justify-content: space-around;
     }
 
     header .welcome h1 {
@@ -342,35 +365,16 @@ header img {
     }
 
     header img {
-        transform: translateX(10%);
-        height: 90%;
-        right: -4%;
+        flex-basis: 50%;
     }
 
     .button {
-        margin: 5% 0 0;
+        margin: 2% auto 5%;
         width: 70%;
     }
 }
 
-@media (orientation:landscape) and (min-width: 1024px) {
-    header .welcome {
-        left: 5%;
-        right: 30%;
-    }
-
-    header .welcome h1 {
-        line-height: 200%;
-    }
-}
-
-@media (orientation: landscape) and (min-width: 1280px) {
-    header .welcome {
-        left: 10%;
-    }
-}
-
-@media (min-width: 1024px) {
+@media (min-width: 1025px) {
     .button::after {
         position: absolute;
         content: "";
@@ -380,6 +384,7 @@ header img {
         left: -50%;
         transition: left 0.6s linear, height 0.6s linear 0.6s, top 0.6s linear 0.6s;
         top: 50%;
+        z-index: -1;
     }
 
     .button::before {
@@ -402,15 +407,23 @@ header img {
         top: 0;
         left: 0;
         height: 100%;
-        z-index: -1;
     }
 
     .button:hover::before {
         top: 0;
         left: 50%;
         height: 100%;
-        z-index: -1;
     }
+}
+
+.wrapper {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    max-width: 100%;
+    overflow: hidden;
+    margin-top: 100vh;
 }
 
 /* ----------------------------------------------------------------------------------------------------- */
@@ -482,6 +495,7 @@ header img {
 
 /* ----------------------------------------------------------------------------------------------------- */
 .technology {
+    background-color: white;
     padding: 10% 2% 0;
     display: flex;
     flex-direction: column;
@@ -616,7 +630,7 @@ header img {
     }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1025px) {
     .projects .project .screen a img:hover {
         transform: scale(0.9);
         filter: brightness(0.7);
