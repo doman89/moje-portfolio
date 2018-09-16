@@ -24,8 +24,7 @@ let documentElementsPosition = [
     document.querySelector('.contact').offsetTop
 ];
 
-//aktualizacja pozycji sekcji po zmianie rozmiaru okna - bez tego sypie sie :)
-window.addEventListener("resize", () => {
+const documentElementsPositionUpdate = () => {
     documentElementsPosition = [
         document.querySelector('header').offsetTop,
         document.querySelector('.aboutme').offsetTop,
@@ -34,7 +33,10 @@ window.addEventListener("resize", () => {
         document.querySelector('.motto').offsetTop,
         document.querySelector('.contact').offsetTop
     ]
-})
+}
+
+//aktualizacja pozycji sekcji po zmianie rozmiaru okna - bez tego sypie sie :)
+window.addEventListener("resize", documentElementsPositionUpdate);
 //typ wyliczeniowy do pracy z sekcjami na stronie
 const enumPosition = {
     HEADER: 0,
@@ -93,22 +95,88 @@ for (let i = 0; i < link.length; i++) {
     });
 };
 
-//obsługa paska wskazującego pozycję strony oraz efektów przy scrollu
-window.addEventListener("scroll", function () {
+
+//funkcja obsługi zdarzenia efektu przy scrollowniu
+const scrollEffectinSection = (typeSection, childNumber, onOff = true) => {
+    if (onOff === true) {
+        for (let i = 1; i <= childNumber; i++) {
+            document.querySelector(`${typeSection}:nth-of-type(${i})`).classList.add(`active`);
+        }
+    } else {
+        for (let i = 1; i <= childNumber; i++) {
+            document.querySelector(`${typeSection}:nth-of-type(${i})`).classList.remove(`active`);
+        }
+    }
+}
+
+
+//nasłuchiwanie na scrolowanie strony i ekekty do tego
+window.addEventListener("scroll", () => {
     const currentPercent = Math.round(window.pageYOffset / (document.documentElement.offsetHeight - window.innerHeight) * 100);
+    const userPosition = window.scrollY + window.innerHeight;
     progressBar.style.width = currentPercent + "%";
     if (window.scrollY < documentElementsPosition[enumPosition.ABOUTME]) {
         header.style.backgroundColor = `rgba(21, 162, 255, ${1-(1.5 * window.scrollY / documentElementsPosition[enumPosition.ABOUTME])})`;
         headerImage.style.opacity = 1 - (1.5 * window.scrollY / documentElementsPosition[enumPosition.ABOUTME]);
     }
-    if ((window.scrollY < documentElementsPosition[enumPosition.TECHNOLOGY])) {
-        if (((window.scrollY - documentElementsPosition[enumPosition.ABOUTME]) / (documentElementsPosition[enumPosition.TECHNOLOGY] - documentElementsPosition[enumPosition.ABOUTME])) > -0.15) {
-            document.querySelector(".aboutme p:nth-of-type(1)").classList.add("active");
+    if ((userPosition > documentElementsPosition[enumPosition.ABOUTME]) && (window.scrollY < documentElementsPosition[enumPosition.TECHNOLOGY])) {
+        const userPositionInSection = ((userPosition - documentElementsPosition[enumPosition.ABOUTME]) / (documentElementsPosition[enumPosition.TECHNOLOGY] - documentElementsPosition[enumPosition.ABOUTME]));
+        if (userPositionInSection > 0.8) {
+            scrollEffectinSection(".aboutme p", 2);
+        } else if (userPositionInSection > 0.4) {
+            scrollEffectinSection(".aboutme p", 1);
         }
+    } else {
+        scrollEffectinSection(".aboutme p", 2, false);
     }
+    if ((userPosition > documentElementsPosition[enumPosition.TECHNOLOGY]) && (window.scrollY < documentElementsPosition[enumPosition.PROJECTS])) {
+        const userPositionInSection = ((userPosition - documentElementsPosition[enumPosition.TECHNOLOGY]) / (documentElementsPosition[enumPosition.PROJECTS] - documentElementsPosition[enumPosition.TECHNOLOGY]));
+        if (window.innerWidth > window.innerHeight) {
+            if (userPositionInSection > 0.75) {
+                scrollEffectinSection(".technology .language", 4);
+            } else if (userPositionInSection > 0.20) {
+                scrollEffectinSection(".technology .language", 3);
+            }
+        } else {
+            if (userPositionInSection > 0.75) {
+                scrollEffectinSection(".technology .language", 4);
+            } else if (userPositionInSection > 0.64) {
+                scrollEffectinSection(".technology .language", 3);
+            } else if (userPositionInSection > 0.40) {
+                scrollEffectinSection(".technology .language", 2);
+            } else if (userPositionInSection > 0.16) {
+                scrollEffectinSection(".technology .language", 1);
+            }
+        }
+    } else {
+        scrollEffectinSection(".technology .language", 4, false);
+    }
+    if ((userPosition > documentElementsPosition[enumPosition.PROJECTS]) && (window.scrollY < documentElementsPosition[enumPosition.MOTTO])) {
+        const userPositionInSection = ((userPosition - documentElementsPosition[enumPosition.PROJECTS]) / (documentElementsPosition[enumPosition.MOTTO] - documentElementsPosition[enumPosition.PROJECTS]));
+        if (window.innerWidth > window.innerHeight) {
+            if (userPositionInSection > 0.90) {
+                scrollEffectinSection(".project", 3);
+            } else if (userPositionInSection > 0.60) {
+                scrollEffectinSection(".project", 2);
+            } else if (userPositionInSection > 0.25) {
+                scrollEffectinSection(".project", 1);
+            }
+        } else {
+            if (userPositionInSection > 0.80) {
+                scrollEffectinSection(".project", 3);
+            } else if (userPositionInSection > 0.50) {
+                scrollEffectinSection(".project", 2);
+            } else if (userPositionInSection > 0.20) {
+                scrollEffectinSection(".project", 1);
+            }
+        }
+    } else {
+        scrollEffectinSection(".project", 3, false);
+    }
+    documentElementsPositionUpdate();
 })
 
-//obsługa klawiszy w lewo i prawo
+//funkcja obsługi klawiszy w lewo i prawo
 const scrollSection = (e) => {
     if (((e.keyCode == 38) || (e == 38)) && (timerScrollWebPage == null)) {
         for (let iteration = 0; iteration < documentElementsPosition.length; iteration++) {
@@ -132,6 +200,8 @@ const scrollSection = (e) => {
 
     }
 }
+
+//nasłuchiwanie klawiszy góra/dół oraz strzałek góra/dół na stronie
 window.addEventListener("keydown", scrollSection);
 
 upArrow.addEventListener("click", () => {
