@@ -24,7 +24,7 @@ let vaderAnimRightStep = 0;
 let vaderAnimDownX;
 let vaderAnimDownY;
 let vaderAnimDownStep = 0;
-let vaderImage = ctx.drawImage(vader, vaderAnimLeft + vaderAnimLeftStep, 0, 32, 48, vaderPosX, vaderPosY, 32, 48);
+// let vaderImage = ctx.drawImage(vader, vaderAnimLeft + vaderAnimLeftStep, 0, 32, 48, vaderPosX, vaderPosY, 32, 48);
 
 const playerMove = (direction) => {
     if (direction == 1) {
@@ -66,3 +66,15 @@ const keyboardSupport = (e) => {
 }
 
 window.addEventListener("keydown", keyboardSupport);
+
+function about(userName) {
+    return (userAge) => {
+        return `Hej ${userName}, Twój wiek to ${userAge} lat.`
+    }
+}
+
+let user = about(`Mateusz`);
+console.log(user(29));
+
+user = about(`Joanna`);
+console.log(user(30));
