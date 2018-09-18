@@ -16,3 +16,8 @@ Najbardziej popularne tryby wyswietlania
 @media (orientation: landscape) and (min-width: 1600px){}
 @media (min-width: 1024px) - hover (desktop){}
 */
+repozytorium - "folder" gitowski
+git commit -m "opis zmian"
+git push (wrzucenie plików)
+
+git add plik.html - dodawanie do repozytorium
