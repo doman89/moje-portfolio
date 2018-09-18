@@ -10,6 +10,7 @@ const speedScrollWebPage = 30;
 const progressBar = document.querySelector(".progressBar");
 const header = document.querySelector("header");
 const headerImage = document.querySelector("header img");
+const arrowNavigation = document.querySelector(".arrowNavigation");
 const upArrow = document.querySelector(".upArrow");
 const downArrow = document.querySelector(".downArrow");
 let timerScrollWebPage;
@@ -53,6 +54,11 @@ const toggleMenuHamburger = () => {
     for (let i = 0; i < icons.length; i++)
         icons[i].classList.toggle("active");
     menu.classList.toggle("active");
+    if (window.innerHeight > window.innerWidth) {
+        header.classList.toggle("active");
+        wrapper.classList.toggle("active");
+        arrowNavigation.classList.toggle("active");
+    }
 }
 
 //obsługa zamknięcia popupa

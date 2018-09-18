@@ -1,7 +1,1 @@
-test.*
-portfolio*.*
 *.txt
-animation.html
-/js/animation.js
-/css/*.css
-!/css/style.css
