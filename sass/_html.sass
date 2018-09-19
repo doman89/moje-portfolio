@@ -1,0 +1,71 @@
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+
+.clearfix
+    &::after
+        content: ""
+        display: block
+        clear: both
+
+html
+    font-size: 10px
+    font-family: 'Saira Extra Condensed', Arial, sans-serif
+
+@media (orientation: portrait) and (min-width: 360px)
+    html
+        font-size: 12px
+
+@media (orientation: portrait) and (min-width: 410px)
+    html
+        font-size: 14px
+
+@media (orientation: portrait) and (min-width: 768px)
+    html
+        font-size: 22px
+
+@media(orientation:portrait) and (min-width: 1024px)
+    html
+        font-size: 28px
+
+@media (orientation: landscape)
+    html
+        font-size: 12px
+
+@media (orientation: landscape) and (min-width: 640px)
+    html
+        font-size: 14px
+
+@media (orientation: landscape) and (min-width: 760px)
+    html
+        font-size: 16px
+
+@media (orientation: landscape) and (min-width: 1024px)
+    html
+        font-size: 22px
+
+@media (orientation: landscape) and (min-width: 1600px)
+    html
+        font-size: 28px
+
+.wrapper
+    +setAbsoluteTL(0, 0, 100%)
+    z-index: 1
+    +setFlex(column, flex-start)
+    max-width: 100%
+    overflow: hidden
+    transition: 0.3s linear
+    &.active
+        left: -30%
+    & *
+        z-index: 0
+
+.progressBar
+    position: fixed
+    bottom: 0
+    left: 0
+    height: 1vh
+    background-image: linear-gradient(90deg, #15A2FF 0%, blue 33.33333%, #FF5363 66.66666%, #B803FF 100%)
+    width: 0%
+    transition: 0.3s linear

@@ -1,0 +1,51 @@
+.technology
+    background-color: white
+    padding: 10% 2% 0
+    +setFlex(column, space-around)
+    align-items: center
+    min-height: 100vh
+    >p
+        text-transform: uppercase
+        font-weight: bold
+        text-align: center
+        font-size: 1.7em
+        margin-bottom: 10%
+    .language
+        display: flex
+        width: 90%
+        flex-direction: column
+        margin-bottom: 20%
+        transform: scale(0)
+        transform-origin: 50% 0
+        transition: 0.9s linear
+        &.active
+            transform: scale(1)
+        .image
+            text-align: center
+            img
+                width: 90%
+        h1
+            font-size: 1.7em
+            text-align: center
+            line-height: 200%
+            margin: 7.5% 0
+        p
+            font-size: 1.3em
+            text-align: justify
+            line-height: 175%
+            font-family: 'Saira', sans-serif
+            text-indent: 1.3em
+
+@media (orientation: landscape)
+    .technology
+        flex-flow: row wrap
+        align-items: flex-start
+        p
+            flex-basis: 100%
+        .language
+            flex-basis: 30%
+            margin-bottom: 10%
+            &:nth-of-type(3n-1)
+                margin-top: 10%
+            p
+                font-size: 1.1em

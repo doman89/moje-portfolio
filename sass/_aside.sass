@@ -1,0 +1,129 @@
+aside 
+    position: fixed 
+    top: 0 
+    bottom: 0 
+    right: -30vw 
+    background-color: rgba(0, 0, 0, 1) 
+    color: white 
+    z-index: 2 
+    width: 30vw 
+    display: flex 
+    transition: 0.3s linear 
+    padding: 5% 1% 0 2% 
+    text-transform: uppercase 
+    font-size: 1.1em
+    &.active
+        right: 0
+    .hamburger
+        cursor: pointer 
+        position: fixed 
+        top: 5% 
+        right: 5% 
+        background-color: rgba(0, 0, 0, 0.5) 
+        padding: 1vw 1vw 
+        border-radius: 10% 
+        z-index: 3 
+        text-align: center 
+        font-size: 1.5em 
+        color: white 
+        transition: 0.3s linear
+        &.active
+            right: 35%
+        .fas
+            display: none
+            &.active
+                display: inline
+    nav
+        display: flex
+        ul
+            +setFlex(column, space-around)
+            align-items: flex-start 
+            list-style: none 
+            color: white 
+            text-decoration: none
+            li
+                a
+                    overflow: hidden
+                    display: block
+                    position: relative
+                    cursor: pointer
+                    text-decoration: none
+                    letter-spacing: 1px
+                    color: white
+                    &::after
+                        +setAbsoluteTL(0, -100%, 100%)
+                        display: block
+                        content: ""
+                        background-color: transparent
+                        height: 95%
+                        border-bottom: 2px solid white
+                        transition: 0.3s linear
+    .arrowNavigation 
+        position: fixed 
+        bottom: 4% 
+        right: 4% 
+        z-index: 2 
+        width: 18vh 
+        transition: 0.3s linear
+        .upArrow,
+        .downArrow
+            cursor: pointer
+            line-height: 8vh
+            text-align: center
+            color: white
+            display: inline-block
+            background-color: rgba(0, 0, 0, .5)
+            width: 8vh
+            height: 8vh
+            border-radius: 25%
+            transform: rotate(0) scale(1)
+        .upArrow
+            transform: rotate(180deg) scale(1)
+        &.active
+            right: 35%
+
+@media (orientation: landscape)
+    aside
+        background-color: rgba(0, 0, 0, 0.8)
+        padding: 2% 5%
+        flex-direction: row-reverse
+        justify-content: flex-start
+        align-items: center
+        width: 100%
+        top: -50vh
+        bottom: unset
+        left: 0
+        font-size: 0.9em
+        &.active
+            top: 0
+        .hamburger
+            transition: none
+            &.active
+                position: static
+        nav
+            flex-grow: 1
+            justify-content: space-between
+            ul
+                flex-grow: 1
+                flex-direction: row
+
+@media (min-width: 1025px)
+    aside
+        nav
+            ul
+                li
+                    a
+                        &:hover 
+                            color: lightgrey
+                            &::after
+                                left: 0
+    .arrowNavigation
+        .upArrow:hover,
+        .downArrow:hover
+            color: black
+            background-color: rgba(255, 255, 255, 0.5)
+            border: 1px solid rgba(0, 0, 0, .5)
+        .upArrow:hover
+            transform: rotate(180deg) scale(1.3)
+        .downArrow:hover
+            transform: rotate(0) scale(1.3)

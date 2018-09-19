@@ -1,0 +1,117 @@
+header
+    +setFixedTL(0, 0, 100%)
+    +setFlex(column, center)
+    overflow: hidden
+    background-color: rgba(21, 162, 255, 1)
+    align-items: center
+    transition: 0.3s linear
+    &.active
+        left: -30%
+    .welcome
+        +setFlex(column, center)
+        min-height: 40vh
+        color: white
+        text-transform: uppercase
+        text-align: center
+        p
+            font-size: 4em
+            font-weight: bold
+            letter-spacing: 2px
+            padding-bottom: 40px
+        .present
+            h1
+                font-size: 1.5em
+                font-weight: bold
+                margin-bottom: 10px
+            h2
+                font-size: 1.3em
+                font-weight: normal
+                margin-bottom: 20px
+        .button
+            position: relative
+            display: block
+            border: 2px solid white
+            margin: 0 auto
+            width: 60%
+            line-height: 2.0em
+            flex-basis: 2.0em
+            border-radius: 5px
+            font-size: 1.0em
+            font-family: 'Saira', sans-serif
+            color: white
+            transition: 0.6s linear
+            overflow: hidden
+            span
+                +setAbsoluteTL(0, 0, 100%)
+                cursor: pointer
+                color: white
+                display: block
+                position: absolute
+                text-align: center
+                animation: buttonContent 6s linear infinite
+                &:nth-child(2)
+                    animation-delay: 3s
+                    opacity: 0
+    img 
+        transform: translateX(10%)
+        display: block
+        width: 60vh
+        flex-basis: 60vh
+
+@keyframes buttonContent
+    0%
+        opacity: 1
+    45%
+        opacity: 1
+    50%
+        opacity: 0
+    95%
+        opacity: 0
+    100%
+        opacity: 1
+
+@media(orientation: landscape)
+    header
+        flex-direction: row
+        justify-content: center
+        align-items: flex-end
+        height: 100vh
+        .welcome
+            flex-basis: 50%
+            align-self: center
+            justify-content: space-around
+            .present
+                h1
+                    line-height: 150%
+            .button
+                margin: 2% auto 5%
+                width: 70%
+        img
+            flex-basis: 50%
+
+@media (min-width: 1025px)
+    header
+        .welcome
+            .button
+                &::after,
+                &::before
+                    content: ""
+                    height: 5%
+                    background-color: white
+                    transition: left 0.6s linear, height 0.6s linear 0.6s, top 0.6s linear 0.6s
+                    z-index: -1
+                &::before
+                    +setAbsoluteTL(50%, 100%, 50%)
+                &::after
+                    +setAbsoluteTL(50%, -50%, 50%)
+                &:hover span
+                    color: #15A2FF
+                    animation-play-state: paused
+                &:hover::after,
+                &:hover::before
+                    top: 0
+                    height: 100%
+                &:hover::after
+                    left: 0
+                &:hover::before
+                    left: 50%

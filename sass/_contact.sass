@@ -1,0 +1,103 @@
+.contact
+    padding: 10% 2%
+    background-color: #000000
+    color: white
+    overflow: hidden
+    min-height: 100vh
+    >p
+        display: inline-block
+        text-align: center
+        font-size: 1.6em
+        margin: 5% 0 10%
+        text-transform: uppercase
+        overflow: hidden
+        &:first-child
+            width: 124%
+            margin-left: -12%
+        &>span
+            position: relative
+            font-family: monospace
+            overflow: hidden
+            &:nth-child(1)::before
+                content: ""
+                display: inline-block
+                position: absolute
+                width: 100%
+                height: 100%
+                background-color: black
+                animation: typing 2s steps(4, end) infinite alternate
+            &:nth-child(2)::before
+                content: ""
+                display: inline-block
+                position: absolute
+                width: 100%
+                height: 100%
+                background-color: black
+                animation: typingReverse 2s steps(4, end) infinite alternate
+    .info
+        margin-bottom: 30px
+        overflow: hidden
+        img
+            float: left
+            width: 50px
+            max-width: 120px
+        p
+            float: left
+            display: block
+            margin-left: 20px
+            line-height: 50px
+            text-align: left
+            font-size: 1.2em
+        a
+            text-decoration: none
+            font-size: 1.0em
+            color: white
+        &:nth-of-type(3)>p
+            font-size: 1.1em
+
+@keyframes typing
+    0%
+        left: 0
+    100%
+        left: -100%
+
+@keyframes typingReverse
+    0%
+        right: 0
+    100%
+        right: -100%
+
+@media (orientation: portrait) and (min-width: 360px)
+    .info
+        img
+            width: 60px
+        p
+            line-height: 60px
+
+@media (orientation: portrait) and (min-width: 410px)
+    .info 
+        img
+            width: 60px
+        p
+            line-height: 60px
+
+@media (orientation: portrait) and (min-width: 768px)
+    .info
+        margin-bottom: 60px
+        img
+            width: 120px
+        p
+        line-height: 120px
+        margin-left: 40px
+
+@media (orientation: landscape)
+    .contact
+        padding: 5%
+
+@media (orientation: landscape) and (min-width: 1024px)
+    .contact
+        padding: 4%
+        &>p
+            margin-top: 0
+        .info
+            margin-bottom: 40px

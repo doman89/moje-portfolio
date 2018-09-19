@@ -1,0 +1,45 @@
+.aboutme
+    margin-top: 100vh
+    min-height: 100vh
+    padding: 5% 10%
+    background-color: #710CE8
+    color: white
+    overflow: hidden
+    h1
+        text-transform: uppercase
+        font-weight: bold
+        text-align: center
+        font-size: 1.7em
+        margin: 10% auto
+    p
+        font-size: 1.3em
+        text-align: justify
+        line-height: 150%
+        font-family: 'Saira', sans-serif
+        margin-bottom: 20px
+        text-indent: 20px
+        transition: 0.9s linear
+        &:nth-of-type(1)
+            transform: translateX(-100vw)
+        &:nth-of-type(2)
+            transform: translateX(100vw)
+        &.active
+            transform: translateX(0)
+
+@media (orientation: portrait) and (min-width: 768px)
+    .aboutme
+        p
+            margin-bottom: 40px
+            text-indent: 40px
+
+@media (orientation: landscape)
+    .aboutme
+        position: relative
+
+@media (orientation: landscape) and (min-width: 1024px)
+    .aboutme 
+        h1
+            margin: 60px auto
+        p
+            margin-bottom: 40px
+            text-indent: 40px
