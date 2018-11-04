@@ -14,7 +14,7 @@ const arrowNavigation = document.querySelector('.arrowNavigation');
 const upArrow = document.querySelector('.upArrow');
 const downArrow = document.querySelector('.downArrow');
 let timerScrollWebPage;
-const landscape = window.innerWidth > window.innerHeight;
+let landscape = window.innerWidth > window.innerHeight;
 
 //tablica położenia sekcji na stronie
 let documentElementsPosition = [
@@ -27,6 +27,7 @@ let documentElementsPosition = [
 ];
 
 const documentElementsPositionUpdate = () => {
+    landscape = window.innerWidth > window.innerHeight;
     documentElementsPosition = [
         document.querySelector('header').offsetTop,
         document.querySelector('.aboutme').offsetTop,
@@ -148,19 +149,19 @@ window.addEventListener('scroll', () => {
     if ((bottomWindow > topSectionTechnology) && (window.scrollY < topSectionProjects)) {
         const bottomWindowInSection = ((bottomWindow - topSectionTechnology) / (topSectionProjects - topSectionTechnology));
         if (landscape) {
-            if (bottomWindowInSection > 0.75) {
+            if (bottomWindowInSection > 0.55) {
                 scrollEffectinSection('.technology .language', 5);
-            } else if (bottomWindowInSection > 0.20) {
+            } else if (bottomWindowInSection > 0.12) {
                 scrollEffectinSection('.technology .language', 3);
             }
         } else {
-            if (bottomWindowInSection > 0.85) {
+            if (bottomWindowInSection > 0.80) {
                 scrollEffectinSection('.technology .language', 5);
-            } else if (bottomWindowInSection > 0.71) {
+            } else if (bottomWindowInSection > 0.62) {
                 scrollEffectinSection('.technology .language', 4);
-            } else if (bottomWindowInSection > 0.50) {
+            } else if (bottomWindowInSection > 0.41) {
                 scrollEffectinSection('.technology .language', 3);
-            } else if (bottomWindowInSection > 0.30) {
+            } else if (bottomWindowInSection > 0.23) {
                 scrollEffectinSection('.technology .language', 2);
             } else if (bottomWindowInSection > 0.05) {
                 scrollEffectinSection('.technology .language', 1);
@@ -174,24 +175,28 @@ window.addEventListener('scroll', () => {
     if ((bottomWindow > topSectionProjects) && (window.scrollY < topSectionMotto)) {
         const bottomWindowInSection = ((bottomWindow - topSectionProjects) / (topSectionMotto - topSectionProjects));
         if (landscape) {
-            if (bottomWindowInSection > 0.85) {
+            if (bottomWindowInSection > 0.72) {
+                scrollEffectinSection('.project', 4);
+            } else if (bottomWindowInSection > 0.57) {
                 scrollEffectinSection('.project', 3);
-            } else if (bottomWindowInSection > 0.60) {
+            } else if (bottomWindowInSection > 0.35) {
                 scrollEffectinSection('.project', 2);
-            } else if (bottomWindowInSection > 0.20) {
+            } else if (bottomWindowInSection > 0.10) {
                 scrollEffectinSection('.project', 1);
             }
         } else {
-            if (bottomWindowInSection > 0.85) {
+            if (bottomWindowInSection > 0.76) {
+                scrollEffectinSection('.project', 4)
+            } else if (bottomWindowInSection > 0.56) {
                 scrollEffectinSection('.project', 3);
-            } else if (bottomWindowInSection > 0.45) {
+            } else if (bottomWindowInSection > 0.28) {
                 scrollEffectinSection('.project', 2);
-            } else if (bottomWindowInSection > 0.20) {
+            } else if (bottomWindowInSection > 0.05) {
                 scrollEffectinSection('.project', 1);
             }
         }
     } else {
-        scrollEffectinSection('.project', 3, false);
+        scrollEffectinSection('.project', 4, false);
     }
     // documentElementsPositionUpdate();
 })
